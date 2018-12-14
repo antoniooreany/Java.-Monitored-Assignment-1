@@ -49,6 +49,11 @@ public class MonitoredAssignment1_3_Amjad {
 			signOfTheResult = signOfOp1;
 		}
 
+		// if the sign = "+", we don't need to show it as a result
+		if (signOfTheResult.equals("+")) {
+			signOfTheResult = "";
+		}
+
 		return signOfTheResult + result;
 	}
 
@@ -67,7 +72,7 @@ public class MonitoredAssignment1_3_Amjad {
 		int lengthDifference = op1Modified.length() - op2Modified.length();
 
 		if (op1Modified.length() < op2Modified.length()) {
-			op1Modified = addZeros(op1Modified, lengthDifference);
+			op1Modified = addZeros(op1Modified, -lengthDifference);
 		}
 		if (op1Modified.length() > op2Modified.length()) {
 			op2Modified = addZeros(op2Modified, lengthDifference);
@@ -79,10 +84,10 @@ public class MonitoredAssignment1_3_Amjad {
 
 		for (index = op2Modified.length() - 1; index >= 0; --index) {
 
-			int valueOfOp1 = op1Modified.charAt(index) - '0' + carryIn;
+			int valueOfOp1 = op1Modified.charAt(index) - '0';
 			int valueOfOp2 = op2Modified.charAt(index) - '0';
 
-			sum = valueOfOp1 + valueOfOp2;
+			sum = valueOfOp1 + valueOfOp2 + carryIn;
 
 			if (sum > 9) {
 				sum = sum - 10;
@@ -95,6 +100,14 @@ public class MonitoredAssignment1_3_Amjad {
 				result = "1" + sum + result;
 			} else {
 				result = sum + result;
+			}
+		}
+		
+		//delete leading zeros in the result
+		for (int i = 0; i < result.length(); i++) {
+			if (result.charAt(i) != '0') {
+				result = result.substring(i);
+				break;
 			}
 		}
 
@@ -157,10 +170,10 @@ public class MonitoredAssignment1_3_Amjad {
 
 		for (index = op1.length() - 1; index >= 0; --index) {
 
-			int valueOfOp1 = op1.charAt(index) - '0' - carryIn;
+			int valueOfOp1 = op1.charAt(index) - '0';
 			int valueOfOp2 = op2.charAt(index) - '0';
 
-			sub = valueOfOp1 - valueOfOp2;
+			sub = valueOfOp1 - valueOfOp2 - carryIn;
 
 			// if the character's value of the first string is less than the character's
 			// value of the second string we add 10 to the character of the first string and
